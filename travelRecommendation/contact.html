@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact — TravelBloom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell; color:#eef2ff; background:#0b1220;}
+    .nav { position: sticky; top:0; background: rgba(3,6,23,0.8); backdrop-filter: blur(10px); border-bottom:1px solid #1f2a44;}
+    .nav-inner{ max-width:1100px; margin:0 auto; display:flex; gap:16px; align-items:center; padding:12px 16px;}
+    .brand { display:flex; gap:10px; align-items:center; color:#fff; text-decoration:none; font-weight:700;}
+    .brand .logo{ width:32px; height:32px; border-radius:8px; background: linear-gradient(135deg,#0d6efd,#60a5fa); display:grid; place-items:center;}
+    .links { display:flex; gap:14px; }
+    .links a { color:#a5b4fc; text-decoration:none; padding:6px 10px; border-radius:8px;}
+    .links a:hover { background:#111827; color:#fff;}
+    .wrap{ max-width:900px; margin:0 auto; padding:32px 16px 80px;}
+    form { background:#121a2c; border:1px solid #1f2a44; border-radius:14px; padding:18px; display:grid; gap:12px;}
+    label { font-size:14px; color:#c7d2fe;}
+    input, textarea {
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid #1f2a44; background:#0a1222; color:#fff; outline:none;
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    .btn { width:max-content; border:1px solid #25406e; background:#0b1730; color:#fff; padding:10px 12px; border-radius:10px; cursor:pointer;}
+    .btn:hover{ background:#0f2348;}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="travel_recommendation.html">
+        <div class="logo">TB</div><span>TravelBloom</span>
+      </a>
+      <div class="links">
+        <a href="travel_recommendation.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>Contact Us</h1>
+    <p>Have feedback or partnership ideas? Drop us a note.</p>
+
+    <!-- Contact form (Task 5) -->
+    <form onsubmit="event.preventDefault(); alert('Thanks! We received your message.'); this.reset();">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Your name" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+      </div>
+      <button class="btn" type="submit">Submit</button>
+    </form>
+  </main>
+</body>
+</html>
