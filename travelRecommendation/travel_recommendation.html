@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TravelBloom — Find Your Next Adventure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --brand: #0d6efd;
+      --bg: #0b1220;
+      --text: #eef2ff;
+      --muted: #a5b4fc;
+      --card: #121a2c;
+      --chip: #0f172a;
+      --accent: #22c55e;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text); background: var(--bg);
+    }
+    /* NAVBAR */
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(3,6,23,0.8); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1f2a44;
+    }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 16px; align-items: center; padding: 12px 16px; }
+    .brand { display: flex; gap: 10px; align-items: center; text-decoration: none; color: var(--text); font-weight: 700; letter-spacing: 0.3px; }
+    .brand .logo {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--brand), #60a5fa);
+      display: grid; place-items: center; font-weight: 900;
+    }
+    .links { display: flex; gap: 14px; margin-left: 8px; }
+    .links a {
+      color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 8px;
+    }
+    .links a:hover { background: #111827; color: #fff; }
+    .searchbar {
+      display: flex; gap: 8px; margin-left: auto; align-items: center; flex-wrap: wrap;
+    }
+    .searchbar input[type="text"] {
+      padding: 10px 12px; min-width: 260px; background: #0a1222; color: var(--text);
+      border: 1px solid #1f2a44; border-radius: 10px; outline: none;
+    }
+    .btn {
+      border: 1px solid #25406e; background: #0b1730; color: var(--text); padding: 10px 12px;
+      border-radius: 10px; cursor: pointer;
+    }
+    .btn:hover { background: #0f2348; }
+    .btn.primary { background: var(--brand); border-color: var(--brand); }
+    .btn.primary:hover { filter: brightness(1.05); }
+    .btn.clear { border-color: #2a2438; background: #1f1b2e; }
+    .btn.clear:hover { background: #2a2540; }
+
+    /* HERO */
+    .hero {
+      min-height: 60vh;
+      display: grid; place-items: center; text-align: center; padding: 80px 16px 40px;
+      background:
+        linear-gradient(180deg, rgba(2,6,23,0.35), rgba(2,6,23,0.85)),
+        url("./assets/hero-bg.jpg") center/cover no-repeat;
+      border-bottom: 1px solid #1f2a44;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin: 0 0 10px; }
+    .hero p { color: var(--muted); max-width: 720px; margin: 0 auto 16px; line-height: 1.55; }
+    .chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+    .chip {
+      padding: 6px 10px; border-radius: 999px; background: var(--chip);
+      color: #c7d2fe; border: 1px dashed #243153; font-size: 13px;
+    }
+
+    /* RESULTS */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 16px 80px; }
+    .intro {
+      display: grid; gap: 12px; justify-items: center; margin-top: -40px; margin-bottom: 28px;
+    }
+    .intro h2 { margin: 0; }
+    .intro p { margin: 0; color: var(--muted); text-align: center; max-width: 800px; }
+    .controls {
+      display: flex; gap: 10px; justify-content: center; margin: 18px 0 28px;
+    }
+    .toggle {
+      display: inline-flex; gap: 8px; align-items: center; background: #0a1222; padding: 8px 12px;
+      border: 1px solid #1f2a44; border-radius: 10px; font-size: 14px; color: var(--muted);
+    }
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;
+    }
+    .card {
+      background: var(--card); border: 1px solid #1f2a44; border-radius: 14px; overflow: hidden;
+      display: grid;
+    }
+    .card img { width: 100%; height: 160px; object-fit: cover; }
+    .card .body { padding: 14px; display: grid; gap: 8px; }
+    .tag { font-size: 12px; background: #0a1222; color: #93c5fd; width: max-content; padding: 4px 8px; border-radius: 999px; border: 1px solid #1f2a44; }
+    .title { font-weight: 700; }
+    .desc { color: #cbd5e1; font-size: 14px; line-height: 1.45; }
+    .time { font-size: 13px; color: #a3e635; }
+    .empty {
+      text-align: center; padding: 32px; color: var(--muted); border: 1px dashed #273657; border-radius: 12px;
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid #1f2a44; padding: 22px 16px; background: #0a1222; }
+    .foot { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .social { display: flex; gap: 10px; }
+    .social a {
+      width: 36px; height: 36px; display: grid; place-items: center; text-decoration: none;
+      color: #93c5fd; border: 1px solid #1f2a44; background: #0b1730; border-radius: 8px;
+    }
+    .sr-only { position: absolute; left: -9999px; }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR (Task 2) -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="travel_recommendation.html">
+        <div class="logo">TB</div>
+        <span>TravelBloom</span>
+      </a>
+      <div class="links">
+        <a href="travel_recommendation.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+
+      <!-- Search + Buttons (home only) -->
+      <div class="searchbar">
+        <input id="searchInput" type="text" placeholder="Try: beach, temple, country, Japan…" aria-label="Search recommendations" />
+        <button class="btn primary" id="searchBtn" type="button">Search</button>
+        <button class="btn clear" id="clearBtn" type="button">Reset</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO (Task 3) -->
+  <header class="hero" role="banner">
+    <div>
+      <h1>Find your next adventure.</h1>
+      <p>Type a keyword like <strong>beach</strong>, <strong>temple</strong>, or <strong>country</strong>, or search by a specific place like
+        <em>Tokyo</em> or <em>Australia</em>. We’ll fetch curated picks from our data and show you why they’re worth a spot on your list.</p>
+      <div class="chips">
+        <span class="chip">No sign-up needed</span>
+        <span class="chip">Fast results</span>
+        <span class="chip">Curated images</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="intro" aria-label="Introduction">
+      <h2>How it works</h2>
+      <p>We load recommendations from a local JSON file, support flexible keyword matching (case & plural-insensitive), and show
+        local time for each recommendation if you’d like.</p>
+      <div class="controls">
+        <label class="toggle">
+          <input type="checkbox" id="toggleTime" />
+          <span>Show local time</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" aria-live="polite" class="grid"></section>
+    <div id="empty" class="empty" style="display:none;">No results yet. Try searching for <em>beach</em>, <em>temple</em>, or <em>country</em>.</div>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <small>&copy; <span id="year"></span> TravelBloom</small>
+      <div class="social">
+        <a href="#" aria-label="Twitter"><span aria-hidden="true">𝕏</span><span class="sr-only">Twitter</span></a>
+        <a href="#" aria-label="Instagram">◎<span class="sr-only">Instagram</span></a>
+        <a href="#" aria-label="Facebook">f<span class="sr-only">Facebook</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="app.js" defer></script>
+</body>
+</html>
 
