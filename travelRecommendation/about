@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About — TravelBloom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell; color:#eef2ff; background:#0b1220;}
+    .nav { position: sticky; top:0; background: rgba(3,6,23,0.8); backdrop-filter: blur(10px); border-bottom:1px solid #1f2a44;}
+    .nav-inner{ max-width:1100px; margin:0 auto; display:flex; gap:16px; align-items:center; padding:12px 16px;}
+    .brand { display:flex; gap:10px; align-items:center; color:#fff; text-decoration:none; font-weight:700;}
+    .brand .logo{ width:32px; height:32px; border-radius:8px; background: linear-gradient(135deg,#0d6efd,#60a5fa); display:grid; place-items:center;}
+    .links { display:flex; gap:14px; }
+    .links a { color:#a5b4fc; text-decoration:none; padding:6px 10px; border-radius:8px;}
+    .links a:hover { background:#111827; color:#fff;}
+    .wrap{ max-width:1100px; margin:0 auto; padding:32px 16px 80px;}
+    h1{ margin-top:24px;}
+    .grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap:16px; margin-top:16px;}
+    .card { background:#121a2c; border:1px solid #1f2a44; border-radius:14px; padding:16px;}
+    .role{ color:#a5b4fc; font-size:14px; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="travel_recommendation.html">
+        <div class="logo">TB</div><span>TravelBloom</span>
+      </a>
+      <div class="links">
+        <a href="travel_recommendation.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>About Us</h1>
+    <p>TravelBloom is a tiny, joyful travel recommender built for speed and clarity. We combine clean data, simple
+      keyword matching, and a little UX polish to help you pick your next destination in seconds.</p>
+
+    <h2>Our Team</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Alex Rivera</h3>
+        <p class="role">Product Lead</p>
+        <p>Owns the roadmap, UX decisions, and partnerships with data providers.</p>
+      </div>
+      <div class="card">
+        <h3>Sam Patel</h3>
+        <p class="role">Frontend Engineer</p>
+        <p>Crafts delightful UI, keeps the site blazing fast and accessible.</p>
+      </div>
+      <div class="card">
+        <h3>Mina Chen</h3>
+        <p class="role">Data Curator</p>
+        <p>Sources, verifies, and augments destination content and images.</p>
+      </div>
+      <div class="card">
+        <h3>Diego Costa</h3>
+        <p class="role">Support & Ops</p>
+        <p>Maintains deployments and ensures smooth sailing when you search.</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
